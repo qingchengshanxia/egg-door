@@ -1,0 +1,18 @@
+'use strict';
+
+//sequelize 提供了 sequelize-cli 工具来实现 Migrations，我们也可以在 egg 项目中引入 sequelize-cli。
+//cnpm install --save-dev sequelize-cli
+//在 egg 项目中，我们希望将所有数据库 Migrations 相关的内容都放在 database 目录下，所以我们在项目根目录下新建一个 .sequelizerc 配置文件：
+//初始化 Migrations 配置文件和目录
+//npx sequelize init:config
+//npx sequelize init:migrations
+//执行完后会生成 database/config.json 文件和 database/migrations 目录，我们修改一下 database/config.json 中的内容，将其改成我们项目中使用的数据库配置：
+
+const path = require('path');
+
+module.exports = {
+  config: path.join(__dirname, 'database/config.json'),
+  'migrations-path': path.join(__dirname, 'database/migrations'),
+  'seeders-path': path.join(__dirname, 'database/seeders'),
+  'models-path': path.join(__dirname, 'app/model'),
+};

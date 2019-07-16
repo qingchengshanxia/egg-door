@@ -29,25 +29,53 @@ module.exports = appInfo => {
     mode: 'file',
     fileExtensions: ['.apk'] // 增加对 apk 扩展名的文件支持
   };
+  //配置jwt生成token
+  config.jwt = {
+    enable: false,
+    secret: "123456"
+  };
+  config.security = {
+    csrf: {
+      enable: true,
+      ignoreJSON: true
+    },
+    domainWhiteList: ['http://127.0.0.1:7001', 'http://127.0.0.1:3001'],
+  }
 
   config.mysql = {
     // 单数据库信息配置
     client: {
-      // host
       host: 'localhost',
-      // 端口号
       port: '3306',
-      // 用户名
       user: 'root',
-      // 密码
       password: '1989long',
-      // 数据库名
-      database: 'test',
+      database: 'test',      // 数据库名
     },
     // 是否加载到 app 上，默认开启
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
+  };
+  //配置sequelize插件
+  config.sequelize = {
+    dialect: 'mysql',//support: mysql, mariadb, postgres, mssql
+    // connectionUri: 'mysql://root:@127.0.0.1:3306/test',
+    host: 'localhost',
+    port: 3306,
+    username:'root',
+    password: '1989long',
+    database: 'egg-sequelize-default',
+    timezone: '+08:00', // 保存为本地时区
+  };
+
+  //配置redis  
+  config.redis = {
+    client: {
+      port: 6379, // Redis port 
+      host: '127.0.0.1', // Redis host 
+      password: '',
+      db: 0,
+    }
   };
 
   // add your user config here
